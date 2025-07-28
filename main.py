@@ -2,8 +2,13 @@ from fastapi import FastAPI, HTTPException
 from schemas import AccountCreate, Transaction
 from services import BankService
 
-app = FastAPI(title="Simple Bank API")
-bank_service = BankService()
+logger = BankLogger(log_level=logging.DEBUG)
+
+app = FastAPI(
+    title="Banking App",
+    summary="A banking API built with FastAPI",
+    version="1.0.0",
+)
 
 @app.post("/accounts/")
 def create_account(account: AccountCreate):
